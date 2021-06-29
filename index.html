@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/estilos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="./js/scripts.js" type="module" defer></script>
+    <title>Uliczki - Mascotas</title>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <div class="col-lg-2">
+          <!-- <img class="img-responsive" src="./assets/logo.PNG" alt="logo" /> -->
+      </div></div>
+      <div class="row justify-content-end">
+        <div class="col-4">
+      <nav>
+      <ul class="list-inline">
+        <li class="list-inline-item">Nosotros</li>
+        <li class="list-inline-item">Anuncios</li>
+        <li class="list-inline-item">Blog</li>
+        <li class="list-inline-item">Contacto</li>
+      </ul>
+      </nav>
+    </div>
+    </div>
+    </header>
+    <h1>Administración</h1>
+
+    <div class="container">
+      <div id="imagenPrincipal"></div>
+      <form>
+        <fieldset>
+          <legend>información del anuncio</legend>
+          <input type="hidden" name="id" />
+          <label for="txtTitulo">titulo: </label>
+          <input
+            type="text"
+            id="txtTitulo"
+            name="txttitulo"
+            placeholder="Titulo"
+            required
+          />
+
+          <label for="txtDescripcion">descripcion: </label>
+          <input
+            type="text"
+            id="txtDescripcion"
+            name="txtdescripcion"
+            placeholder="Descripcion"
+            required
+          />
+          <label for="RadioAnimal">animal:</label>
+          <div class="row">
+            <div class="col-4">
+              <input type="radio" name="txtanimal" value="perro"/>
+              <label class="label">perro </label>
+            </div>
+
+            <div class="col-4">
+              <input type="radio" name="txtanimal" value="gato"            />
+            <label              >gato </label>
+          </div>
+          </div>
+          <label for="txtPrecio">precio: </label>
+          <input
+            type="text"
+            id="txtPrecio"
+            name="txtprecio"
+            placeholder="Precio"
+            required
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+          />
+
+          <!-- shift alt f -->
+
+          <div id="prueba">
+            <i class="fa fa-paw" aria-hidden="true"></i>
+            <input
+              type="text"
+              id="txtRaza"
+              name="txtraza"
+              placeholder="Raza"
+              required
+            />
+
+            <i class="fa fa-github-alt" aria-hidden="true"></i>
+            <input
+              type="text"
+              id="txtFecha"
+              name="fecha"
+              placeholder="dd/mm/aaaa"
+              required
+            />
+
+            <i class="fa fa-paw" aria-hidden="true"></i>
+
+            <select name="vacunas">
+              <option value="si">SI</option>
+              <option value="no" selected>NO</option>
+            </select>
+          </div>
+        </fieldset>
+        <!-- <button id="btncrear"  type="submit">Crear datos</button> -->
+
+        <br><br>
+        <div id="divSubmitForm">
+          <!-- <i class="fa fa-floppy-o"></i> -->
+          <input class="btn btn-primary align-center" type="submit" id="btnGuardar" value="Guardar" />
+        </div>
+
+        <!-- <button id="btnleer">Leer datos</button> -->
+
+        <div id="divAccionesTabla" class="oculto">
+          <input
+            class="btn btn-success"
+            type="button"
+            id="btnModificar"
+            value="Modificar"
+          />
+          <input
+            class="btn btn-danger"
+            type="button"
+            id="btnEliminarElemento"
+            value="Eliminar"
+          />
+          <input
+            class="btn btn-warning"
+            type="button"
+            id="btnCancelarCambios"
+            value="Cancelar"
+          />
+        </div>
+
+        <br /><br />
+
+        <div class="spinner"></div>
+        
+        <br /><br />
+        <div id="divFiltros">
+          <div class="row jumbotron h1">FILTROS</div>
+
+          <div class="row justify-content-between">
+            <div class="col-5">
+              <div class="form-group">
+                <label for="filtro">Filtrar por:</label>
+                <select class="form-control" name="filtro" id="filtro">
+                  <option value="todos">Todos</option>
+                  <option value="perro">Perro</option>
+                  <option value="gato">Gato</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="form-group">
+                <label for="precioPromedio">Precio promedio:</label>
+                <input
+                  type="text"
+                  class="form-control input-group mb-3"
+                  aria-label="Default"
+                  id="txtPromedio"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="campos"
+                >Campos mostrados:
+                <small>Tildar los campos a mostrar</small></label
+              >
+              <div class="row">
+              <div class="col-lg">
+                <div class="form-check form-check-inline">
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkTitulo"
+                      id="titulo"
+                      class="form-check-input"
+                      checked
+                    />
+                    <label for="chkTitulo" class="form-check-label"
+                      >TITULO
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkTransaccion"
+                      id="transaccion"
+                      class="form-check-input"
+                    />
+                    <label for="chkTransaccion" class="form-check-label"
+                      >TRANSACCION
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkDescripcion"
+                      id="descripcion"
+                      class="form-check-input"
+                    />
+                    <label for="chkDescripcion" class="form-check-label"
+                      >DESCRIPCION
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkPrecio"
+                      id="precio"
+                      class="form-check-input"
+                    />
+                    <label for="chkPrecio" class="form-check-label">
+                      PRECIO
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkRaza"
+                      id="raza"
+                      class="form-check-input"
+                    />
+                    <label for="chkRaza" class="form-check-label"> RAZA </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkFecha"
+                      id="fecha_nacimiento"
+                      class="form-check-input"
+                    />
+                    <label for="chkFecha" class="form-check-label">
+                      FECHA NACIMIENTO
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkVacunado"
+                      id="vacunado"
+                      class="form-check-input"
+                    />
+                    <label for="chkVacunado" class="form-check-label">
+                      VACUNADO
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="chkAnimal"
+                      id="animal"
+                      class="form-check-input"
+                    />
+                    <label for="chkAnimal" class="form-check-label">
+                      ANIMAL
+                    </label>
+                  </div>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+        <br /><br />
+        <div id="divTabla"></div>
+      </form>
+    </div>
+
+    <footer>
+      <nav>
+        <a href="#">Nosotros</a>
+        <a href="#">Anuncios</a>
+        <a href="#">Blog</a>
+        <a href="#">Contacto</a>
+      </nav>
+      <p>Todos los derechos reservados <date>2019</date> &copy;</p>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

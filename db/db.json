@@ -1,0 +1,48 @@
+{
+  "anuncios": [
+    {
+      "titulo": "perro",
+      "transaccion": "venta",
+      "descripcion": "venta ",
+      "precio": "3000",
+      "raza": "beagle",
+      "fecha_nacimiento": "01/01/2021",
+      "vacunado": "si",
+      "animal": "perro",
+      "id": 9
+    },
+    {
+      "titulo": "hola hola",
+      "transaccion": "venta",
+      "descripcion": "venta gato",
+      "precio": "2000",
+      "raza": "persa",
+      "fecha_nacimiento": "12/03/2018",
+      "vacunado": "si",
+      "animal": "gato",
+      "id": 12
+    },
+    {
+      "titulo": "ofertaaaa",
+      "transaccion": "venta",
+      "descripcion": "venta gato",
+      "precio": "5000",
+      "raza": "labrador",
+      "fecha_nacimiento": "01/01/2021",
+      "vacunado": "no",
+      "animal": "gato",
+      "id": 13
+    },
+    {
+      "titulo": "ofertaaaa",
+      "transaccion": "venta",
+      "descripcion": "venta gato",
+      "precio": "3000",
+      "raza": "labrador",
+      "fecha_nacimiento": "12/02/2020",
+      "vacunado": "no",
+      "animal": "perro",
+      "id": 14
+    }
+  ]
+}
